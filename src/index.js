@@ -10,8 +10,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <BrowserRouter basename="/trainee-task2-tmdb/"> */}
-      <BrowserRouter>
+      <BrowserRouter basename="/trainee-task2/">
+        {/* <BrowserRouter> */}
         <App />
       </BrowserRouter>
     </Provider>
