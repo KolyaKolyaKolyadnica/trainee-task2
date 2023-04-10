@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 20px 0px;
+}
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+.listItem {
+  width: 200px;
+}
+.infoContainer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  outline: 2px solid #000;
+}
+.itemImage {
+  width: 200px;
+  height: 300px;
+}
+.loadMoreBtn {
+  width: 300px;
+  padding: 20px;
+  font-size: 24px;
+}

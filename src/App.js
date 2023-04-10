@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import style from "./App.module.css";
+import HomePage from "./pages/HomePage/HomePage";
+import Navigation from "./components/Navigation/Navigation";
+import TrendsPage from "./pages/TrendsPage/TrendsPage";
+import PopularPage from "./pages/PopularPage/PopularPage";
+import NowPlayingPage from "./pages/NowPlayingPage/NowPlayingPage";
+import MoviePage from "./pages/MoviePage/MoviePage";
+import MoviesByKeywordPage from "./pages/MoviesByKeywordPage/MoviesByKeywordPage";
 
 function App() {
+  // const api = new ThemoviedbApi();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={style.App}>
+      <Routes>
+        <Route path="/" element={<Navigation />}>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="trends" element={<TrendsPage />}></Route>
+          <Route path="popular" element={<PopularPage />}></Route>
+          <Route path="now-playing" element={<NowPlayingPage />}></Route>
+          <Route path="/:id" element={<MoviePage />}></Route>
+          <Route
+            path="/movies-by-keyword"
+            element={<MoviesByKeywordPage />}
+          ></Route>
+          <Route path="/*" element={<div>Not found</div>}></Route>
+        </Route>
+      </Routes>
     </div>
   );
 }

@@ -1,0 +1,15 @@
+.listItem {
+  width: 200px;
+  transition: 500ms all;
+  cursor: pointer;
+}
+.listItem:hover {
+  transform: scale(1.05);
+}
+
+.itemImage {
+  display: block;
+  width: auto;
+  min-width: 118px;
+  height: 175px;
+}
