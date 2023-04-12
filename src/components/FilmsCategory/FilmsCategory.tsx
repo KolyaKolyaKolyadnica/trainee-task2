@@ -3,6 +3,7 @@ import FilmItem from "../FilmItem/FilmItem";
 import style from "./FilmsCategory.module.css";
 
 import { IMovieData } from "../../types/types";
+import Speener from "../Speener/Speener";
 
 interface FilmsCategoryProps {
   collection: IMovieData[];
@@ -18,12 +19,12 @@ export default function FilmsCategory({
   return (
     <div className={style.container}>
       <ul className={style.list}>
-        {collection.map((item: IMovieData) => (
+        {collection.map((item: any) => (
           <FilmItem item={item} key={item.id} />
         ))}
       </ul>
       <button type="button" className={style.loadMoreBtn} onClick={loadMore}>
-        {isLoading ? "Wait" : "Load more or pagination"}
+        {isLoading ? <Speener /> : "Load more or pagination"}
       </button>
     </div>
   );

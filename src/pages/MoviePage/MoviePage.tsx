@@ -6,6 +6,7 @@ import MovieMainSection from "../../components/MovieMainSection/MovieMainSection
 import MovieSecondarySection from "../../components/MovieSecondarySection/MovieSecondarySection";
 
 import { IMovieById, IMovieCredits } from "../../types/types";
+import Speener from "../../components/Speener/Speener";
 
 export default function MoviePage() {
   const [movie, setMovie] = useState<IMovieById | null>(null);
@@ -29,13 +30,15 @@ export default function MoviePage() {
   }, []);
 
   return (
-    <>
+    <div className={style.container}>
+      {isLoading && <Speener />}
+
       {movie && cast && (
-        <div className={style.container}>
+        <>
           <MovieMainSection movie={movie} cast={cast} />
           <MovieSecondarySection movie={movie} cast={cast} />
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 }

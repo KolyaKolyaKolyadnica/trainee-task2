@@ -14,6 +14,11 @@
   overflow: hidden;
   border-radius: 20px;
   outline: 2px solid #000;
+
+  padding-bottom: 10px;
+}
+.textContainer {
+  padding: 0px 10px;
 }
 .infoContainer > p,
 .infoContainer > h2 {
@@ -22,9 +27,4 @@
 .itemImage {
   width: 200px;
   height: 300px;
-}
-.loadMoreBtn {
-  width: 300px;
-  padding: 20px;
-  font-size: 24px;
 }
