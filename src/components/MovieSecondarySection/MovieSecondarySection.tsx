@@ -4,10 +4,20 @@ import api from "../../services/ThemoviedbApi";
 import ActorItem from "../ActorItem/ActorItem";
 import style from "./MovieSecondarySection.module.css";
 
-export default function MovieSecondarySection({ movie, cast }) {
-  const [keywords, setKeywords] = useState(null);
+import { IMovieById, IMovieCredits, IMovieKeywords } from "../../types/types";
+
+interface IMovieSecondarySection {
+  movie: IMovieById;
+  cast: IMovieCredits;
+}
+
+export default function MovieSecondarySection({
+  movie,
+  cast,
+}: IMovieSecondarySection) {
+  const [keywords, setKeywords] = useState<IMovieKeywords[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<any>(null);
 
   const { id } = useParams();
 

@@ -1,6 +1,16 @@
 import style from "./MovieMainSection.module.css";
 
-export default function MovieMainSection({ movie, cast }) {
+import { IMovieById, IMovieCredits, IMovieKeywords } from "../../types/types";
+
+interface IMovieSecondarySection {
+  movie: IMovieById;
+  cast: IMovieCredits;
+}
+
+export default function MovieMainSection({
+  movie,
+  cast,
+}: IMovieSecondarySection) {
   return (
     <section className={style.mainInfo}>
       <div
@@ -39,9 +49,13 @@ export default function MovieMainSection({ movie, cast }) {
             </ul>
           </li>
 
-          <li className={style.listItem}>
-            {(movie.runtime - (movie.runtime % 60)) / 60}h {movie.runtime % 60}m
-          </li>
+          {movie.runtime && (
+            <li className={style.listItem}>
+              {(movie.runtime - (movie.runtime % 60)) / 60}h{" "}
+              {movie.runtime % 60}m
+            </li>
+          )}
+
           <li className={style.listItem}>
             Rating: {Math.round(movie.vote_average * 10)}%
           </li>

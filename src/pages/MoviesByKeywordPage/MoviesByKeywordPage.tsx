@@ -2,13 +2,14 @@ import { Link, useSearchParams } from "react-router-dom";
 import style from "./MoviesByKeywordPage.module.css";
 import api from "../../services/ThemoviedbApi";
 import { useEffect, useState } from "react";
+import { IMovieData } from "../../types/types";
 
 export default function MoviesByKeywordPage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<IMovieData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<any>(null);
 
   useEffect(() => {
     api

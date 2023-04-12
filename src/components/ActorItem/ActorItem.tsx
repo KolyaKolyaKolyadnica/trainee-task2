@@ -1,7 +1,13 @@
 import style from "./ActorItem.module.css";
 import unknownActor from "../../images/unknownActor.jpg";
 
-export default function ActorItem({ item }) {
+import { ICast } from "../../types/types";
+
+interface IActorItem {
+  item: ICast;
+}
+
+export default function ActorItem({ item }: IActorItem) {
   return (
     <li className={style.listItem}>
       <img

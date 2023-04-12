@@ -9,8 +9,6 @@ import MoviePage from "./pages/MoviePage/MoviePage";
 import MoviesByKeywordPage from "./pages/MoviesByKeywordPage/MoviesByKeywordPage";
 
 function App() {
-  // const api = new ThemoviedbApi();
-
   return (
     <div className={style.App}>
       <Routes>

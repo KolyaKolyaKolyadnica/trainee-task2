@@ -1,15 +1,17 @@
 import style from "./MoviePage.module.css";
 import api from "../../services/ThemoviedbApi";
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import MovieMainSection from "../../components/MovieMainSection/MovieMainSection";
 import MovieSecondarySection from "../../components/MovieSecondarySection/MovieSecondarySection";
 
+import { IMovieById, IMovieCredits } from "../../types/types";
+
 export default function MoviePage() {
-  const [movie, setMovie] = useState(null);
-  const [cast, setCast] = useState(null);
+  const [movie, setMovie] = useState<IMovieById | null>(null);
+  const [cast, setCast] = useState<IMovieCredits | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<any>(null);
 
   const { id } = useParams();
 
@@ -19,7 +21,7 @@ export default function MoviePage() {
       api.fetchCastById(id).then((movieCast) => {
         setCast(movieCast);
       });
-    } catch (err) {
+    } catch (err: any) {
       setError(err);
     } finally {
       setIsLoading(false);
@@ -28,7 +30,7 @@ export default function MoviePage() {
 
   return (
     <>
-      {movie && (
+      {movie && cast && (
         <div className={style.container}>
           <MovieMainSection movie={movie} cast={cast} />
           <MovieSecondarySection movie={movie} cast={cast} />

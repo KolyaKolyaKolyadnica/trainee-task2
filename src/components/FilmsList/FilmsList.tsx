@@ -1,7 +1,14 @@
 import FilmItem from "../FilmItem/FilmItem";
 import style from "./FilmsList.module.css";
 
-export default function FilmsList({ sectionTitle, collection }) {
+import { IMovieData } from "../../types/types";
+
+interface IFilmsList {
+  sectionTitle: string;
+  collection: IMovieData[];
+}
+
+export default function FilmsList({ sectionTitle, collection }: IFilmsList) {
   return (
     <section className={style.section}>
       <h1 className={style.sectionTitle}>{sectionTitle}</h1>

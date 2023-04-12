@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import style from "./HomePage.module.css";
 import FilmsList from "../../components/FilmsList/FilmsList";
-import { useDispatch, useSelector } from "react-redux";
 import { getAllCategory } from "../../redux/movies/moviesOptions";
+import { useAppDispatch, useAppSelector } from "../../hooks/tsRedux";
 
 export default function HomePage() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { trends, popular, nowPlaying, isLoading, error } = useSelector(
+  const { trends, popular, nowPlaying, isLoading, error } = useAppSelector(
     (state) => state.movies
   );
 

@@ -1,13 +1,16 @@
 class ThemoviedbApi {
+  KEY: string;
+  URL: string;
+
   constructor() {
-    // Need remove to .env
+    // Need remove to .env?
     this.KEY = "63fcefaaeb569f05e001a1d867f25d51";
 
     // Public config
     this.URL = `https://api.themoviedb.org`;
   }
 
-  async getData(optionStr) {
+  async getData(optionStr: string) {
     const response = await fetch(optionStr);
     if (response.ok) {
       return response.json();
@@ -30,22 +33,22 @@ class ThemoviedbApi {
     return this.getData(optionStr);
   }
 
-  fetchMovieById(id) {
+  fetchMovieById(id: string | undefined) {
     const optionStr = `${this.URL}/3/movie/${id}?api_key=${this.KEY}`;
     return this.getData(optionStr);
   }
 
-  fetchCastById(id) {
+  fetchCastById(id: string | undefined) {
     const optionStr = `${this.URL}/3/movie/${id}/credits?api_key=${this.KEY}`;
     return this.getData(optionStr);
   }
 
-  getKeywords(id) {
+  getKeywords(id: string | undefined) {
     const optionStr = `${this.URL}/3/movie/${id}/keywords?api_key=${this.KEY}`;
     return this.getData(optionStr);
   }
 
-  getMoviesByKeywordId(keywordId, page = 1) {
+  getMoviesByKeywordId(keywordId: string | null, page = 1) {
     const optionStr = `${this.URL}/3/keyword/${keywordId}/movies?api_key=${this.KEY}&keywordId=111`;
     return this.getData(optionStr);
   }
