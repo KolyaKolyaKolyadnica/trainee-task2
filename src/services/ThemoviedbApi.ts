@@ -1,3 +1,10 @@
+import {
+  IPromiseMovieCategory,
+  IMovieById,
+  IMovieCredits,
+  IPromiseMovieKeywords,
+} from "../types/types";
+
 class ThemoviedbApi {
   KEY: string;
   URL: string;
@@ -18,37 +25,39 @@ class ThemoviedbApi {
     return await Promise.reject(new Error("Ошибка. Что то пошло не так."));
   }
 
-  fetchTrend(page = 1) {
+  fetchTrend(page = 1): Promise<IPromiseMovieCategory> {
     const optionStr = `${this.URL}/3/trending/all/day?api_key=${this.KEY}&page=${page}`;
     return this.getData(optionStr);
   }
 
-  fetchPopular(page = 1) {
+  fetchPopular(page = 1): Promise<IPromiseMovieCategory> {
     const optionStr = `${this.URL}/3/movie/popular?api_key=${this.KEY}&page=${page}`;
     return this.getData(optionStr);
   }
 
-  fetchNowPlaying(page = 1) {
+  fetchNowPlaying(page = 1): Promise<IPromiseMovieCategory> {
     const optionStr = `${this.URL}/3/movie/now_playing?api_key=${this.KEY}&page=${page}`;
     return this.getData(optionStr);
   }
 
-  fetchMovieById(id: string | undefined) {
+  fetchMovieById(id: string | undefined): Promise<IMovieById> {
     const optionStr = `${this.URL}/3/movie/${id}?api_key=${this.KEY}`;
     return this.getData(optionStr);
   }
 
-  fetchCastById(id: string | undefined) {
+  fetchCastById(id: string | undefined): Promise<IMovieCredits> {
     const optionStr = `${this.URL}/3/movie/${id}/credits?api_key=${this.KEY}`;
     return this.getData(optionStr);
   }
 
-  getKeywords(id: string | undefined) {
+  getKeywords(id: string | undefined): Promise<IPromiseMovieKeywords> {
     const optionStr = `${this.URL}/3/movie/${id}/keywords?api_key=${this.KEY}`;
     return this.getData(optionStr);
   }
 
-  getMoviesByKeywordId(keywordId: string | null, page = 1) {
+  getMoviesByKeywordId(
+    keywordId: string | null
+  ): Promise<IPromiseMovieKeywords> {
     const optionStr = `${this.URL}/3/keyword/${keywordId}/movies?api_key=${this.KEY}&keywordId=111`;
     return this.getData(optionStr);
   }

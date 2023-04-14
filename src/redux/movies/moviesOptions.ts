@@ -1,23 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../services/ThemoviedbApi";
+import {
+  IPromiseMovieCategory,
+  IPromiseAllMovieCategories,
+} from "../../types/types";
 
-const asyncWrapper = async (apiMethod: any, thunkAPI: any) => {
-  // Warning!!! Не могу придумать как мне описать тип
+const asyncWrapper = async (
+  apiMethod: Promise<IPromiseMovieCategory>,
+  thunkAPI: any
+) => {
   try {
     const data = await apiMethod;
-
-    // for fetch all films categories on HomePage:
-    if (data.trends && data.popular && data.nowPlaying) {
-      const result = {
-        trends: data.trends.results,
-        popular: data.popular.results,
-        nowPlaying: data.nowPlaying.results,
-      };
-
-      return result;
-    }
-
-    // for fetch films by some category (trend/popular/... .etc)
     return data.results;
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error.message);
@@ -42,5 +35,19 @@ export const getNowPlaying = createAsyncThunk(
 
 export const getAllCategory = createAsyncThunk(
   "movies/getAllCategory",
-  async (_, thunkAPI) => asyncWrapper(api.getAllFirstPage(), thunkAPI)
+  async (_, thunkAPI) => {
+    try {
+      const data = await api.getAllFirstPage();
+
+      const result = {
+        trends: data.trends.results,
+        popular: data.popular.results,
+        nowPlaying: data.nowPlaying.results,
+      };
+
+      return result as IPromiseAllMovieCategories;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
 );

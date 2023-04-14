@@ -21,12 +21,16 @@ export default function MovieSecondarySection({
 
   const { id } = useParams();
 
-  useEffect(() => {
+  const getKeywords = () => {
     api
       .getKeywords(id)
       .then((res) => setKeywords(res.keywords))
       .catch((err) => setError(err))
       .finally(() => setIsLoading(false));
+  };
+
+  useEffect(() => {
+    getKeywords();
   }, []);
 
   return (

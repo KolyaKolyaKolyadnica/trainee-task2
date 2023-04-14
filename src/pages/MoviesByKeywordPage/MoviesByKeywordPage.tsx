@@ -18,6 +18,7 @@ export default function MoviesByKeywordPage() {
       .then((res) => {
         setMovies(res.results);
         setIsLoading(false);
+        console.log(res);
       })
       .catch((err) => {
         setError(err);

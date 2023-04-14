@@ -12,11 +12,11 @@ export default function MoviePage() {
   const [movie, setMovie] = useState<IMovieById | null>(null);
   const [cast, setCast] = useState<IMovieCredits | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<any | null>(null);
 
   const { id } = useParams();
 
-  useEffect(() => {
+  const getData = () => {
     try {
       api.fetchMovieById(id).then((movie) => setMovie(movie));
       api.fetchCastById(id).then((movieCast) => {
@@ -27,6 +27,10 @@ export default function MoviePage() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   return (

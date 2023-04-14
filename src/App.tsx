@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import style from "./App.module.css";
 import HomePage from "./pages/HomePage/HomePage";
 import Navigation from "./components/Navigation/Navigation";
@@ -9,24 +9,21 @@ import MoviePage from "./pages/MoviePage/MoviePage";
 import MoviesByKeywordPage from "./pages/MoviesByKeywordPage/MoviesByKeywordPage";
 
 function App() {
-  return (
-    <div className={style.App}>
-      <Routes>
-        <Route path="/" element={<Navigation />}>
-          <Route path="/" element={<HomePage />}></Route>
-          <Route path="trends" element={<TrendsPage />}></Route>
-          <Route path="popular" element={<PopularPage />}></Route>
-          <Route path="now-playing" element={<NowPlayingPage />}></Route>
-          <Route path="/:id" element={<MoviePage />}></Route>
-          <Route
-            path="/movies-by-keyword"
-            element={<MoviesByKeywordPage />}
-          ></Route>
-          <Route path="/*" element={<div>Not found</div>}></Route>
-        </Route>
-      </Routes>
-    </div>
-  );
+  const pages = useRoutes([
+    {
+      element: <Navigation />,
+      children: [
+        { path: "/", element: <HomePage /> },
+        { path: "trends", element: <TrendsPage /> },
+        { path: "popular", element: <PopularPage /> },
+        { path: "now-playing", element: <NowPlayingPage /> },
+        { path: "/:id", element: <MoviePage /> },
+        { path: "/movies-by-keyword", element: <MoviesByKeywordPage /> },
+        { path: "/*", element: <div>Not found</div> },
+      ],
+    },
+  ]);
+  return <div className={style.App}>{pages}</div>;
 }
 
 export default App;

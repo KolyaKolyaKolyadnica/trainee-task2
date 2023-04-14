@@ -16,7 +16,6 @@ export interface IMovieData {
   video: boolean;
   vote_average: number;
 }
-
 export interface IMovieById {
   adult: boolean;
   backdrop_path: string | null;
@@ -49,7 +48,6 @@ export interface IMovieById {
   vote_average: number;
   vote_count: number;
 }
-
 export interface ICast {
   adult: boolean;
   gender: number | null;
@@ -64,7 +62,6 @@ export interface ICast {
   credit_id: string;
   order: number;
 }
-
 export interface IMovieCredits {
   id: number;
   cast: ICast[];
@@ -82,8 +79,31 @@ export interface IMovieCredits {
     job: string;
   }[];
 }
-
 export interface IMovieKeywords {
   id: number;
   name: string;
+}
+
+export interface IPromiseMovieCategory {
+  page: number;
+  results: IMovieData[];
+  total_pages: number;
+  total_results: number;
+}
+export interface IPromiseAllMovieCategories {
+  trends: IMovieData[];
+  popular: IMovieData[];
+  nowPlaying: IMovieData[];
+}
+
+export interface IPromiseMovieKeywords {
+  id: number;
+  keywords: IMovieKeywords[];
+}
+export interface IPromiseMovieKeywords {
+  id: number;
+  page: number;
+  results: IMovieData[];
+  total_pages: number;
+  total_results: number;
 }
